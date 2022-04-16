@@ -1,6 +1,7 @@
 int texSamplingMode = 3; // disables smoothing
 int globalScale = 3;
-int mouseXscaled, mouseYscaled, pmouseXscaled, pmouseYscaled;
+PVector mousePos = new PVector(0,0);
+PVector pmousePos = new PVector(0,0);
 int sW = 1024;
 int sH = 768;
 PFont font;
@@ -8,8 +9,8 @@ int fontSize = 48;
 Settings settings;
 PGraphics2D pg;
 
-Bg bg;
-Platform platform;
+AnimSprite bg;
+AnimSprite platform;
 Player player;
 
 void setup() {
@@ -25,27 +26,23 @@ void setup() {
   ((PGraphicsOpenGL)pg).textureSampling(texSamplingMode);
   pg.noSmooth();
   
-  noCursor();
+  //noCursor();
   noSmooth();
   pixelDensity(1);
   rectMode(CENTER);
   ellipseMode(CENTER);
   
-  bg = new Bg();
-  platform = new Platform();
-  player = new Player();
+  player = new Player("car.png", 6, 548/2, 120, 2, 1);
 }
 
 void draw() {
-  mouseXscaled = mouseX / globalScale;
-  mouseYscaled = mouseY / globalScale;
-  pmouseXscaled = pmouseX / globalScale;
-  pmouseYscaled = pmouseY / globalScale;
+  mousePos.x = mouseX / globalScale;
+  mousePos.y = mouseY / globalScale;
+  pmousePos.x = pmouseX / globalScale;
+  pmousePos.y = pmouseY / globalScale;
   
   pg.beginDraw();
   
-  bg.run();
-  platform.run();
   player.run();
   
   pg.endDraw();
