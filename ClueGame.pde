@@ -36,9 +36,11 @@ void setup() {
   bg = loadImage("bg1.png");
   
   player = new Player("car", 6, 548/2, 120, 2, 1);
+  player.resize(1.0/globalScale);
   player.p = new PVector(sW/2, sH/2);
   
   platform = new Platform("platform", 1, 201 ,68, 1, 1);
+  platform.resize(1.0/globalScale);
   platform.p = new PVector(sW/2, sH/2);
 }
 

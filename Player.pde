@@ -1,7 +1,7 @@
 class Player extends AnimSprite {
 
   float ease = 4;
-  boolean dead = true;
+  boolean alive = true;
   
 Player(String _name, int _fps){
    super(_name, _fps);

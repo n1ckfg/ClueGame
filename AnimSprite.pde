@@ -49,6 +49,22 @@ class AnimSprite {
   }
 
 //~~~~~~~~~~~~~~~~~~~~~~
+void resize(int _w, int _h) {
+  for (int i=0; i<frames.length; i++) {
+    frames[i].resize(_w, _h);
+  }
+  w = frames[0].width;
+  h = frames[0].height;
+}
+
+void resize(float f) {
+  for (int i=0; i<frames.length; i++) {
+    frames[i].resize(int(frames[i].width * f), int(frames[i].height * f));
+  }
+  w = frames[0].width;
+  h = frames[0].height;
+}
+
 void init(){
   if(!is3D){
   p = new PVector(0, 0);
