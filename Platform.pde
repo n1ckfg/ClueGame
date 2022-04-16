@@ -7,6 +7,11 @@ class Platform extends AnimSprite {
   PVector v = vOrig;
   PVector aOrig = new PVector(0.1,1);
   PVector a = aOrig;
+  PVector wall1 = new PVector(0, pg.height/2);
+  PVector wall2 = new PVector(pg.width, pg.height/2);
+  PVector target = wall1;
+  float switchDist = 100;
+  float moveSpeed = 0.01;
   
 Platform(String _name, int _fps){
    super(_name, _fps);
@@ -23,10 +28,26 @@ Platform(String _name, int _fps, int _tdx, int _tdy, int _etx, int _ety){
    init();
  }
  
+ void setTarget(PVector w1, PVector w2) {
+   wall1 = w1;
+   wall2 = w2;
+   target = w1;
+ }
+ 
  void update(){
    super.update();
-   if(hitDetect(player.p.x,player.p.y,player.w,player.h,p.x,p.y,w,h)){
-
+   p.lerp(target, moveSpeed);
+   if (p.dist(target) < switchDist) {
+     if (target == wall1) {
+       target = wall2;
+     } else if (target == wall2) {
+       target = wall1;
+     }
+   }
+   if(player.p.dist(p) < 100){
+    player.isOnPlatform = true;
+   } else {
+     player.isOnPlatform = false;
    }
  }
  

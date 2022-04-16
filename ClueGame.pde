@@ -1,9 +1,9 @@
 int texSamplingMode = 3; // disables smoothing
-int globalScale = 3;
+int globalScale = 1;
 PVector mousePos = new PVector(0,0);
 PVector pmousePos = new PVector(0,0);
 int sW = 1024;
-int sH = 768;
+int sH = 576;
 PFont font;
 int fontSize = 48;
 Settings settings;
@@ -22,8 +22,8 @@ void setup() {
   noSmooth();
 
   settings = new Settings("settings.txt");
-  sW = displayWidth / globalScale;
-  sH = displayHeight / globalScale;
+  sW /= globalScale;
+  sH /= globalScale;
   
   pg = (PGraphics2D) createGraphics(sW, sH, P2D);
   ((PGraphicsOpenGL)pg).textureSampling(texSamplingMode);
@@ -52,7 +52,8 @@ void draw() {
   
   pg.beginDraw();
   
-  pulsebg(bgColor);
+  pg.clear();
+  //pulsebg(bgColor);
   pg.imageMode(CORNER);
   pg.image(bg, 0, 0, pg.width, pg.height);
 
