@@ -9,9 +9,12 @@ int fontSize = 48;
 Settings settings;
 PGraphics2D pg;
 
-AnimSprite bg;
-AnimSprite platform;
+PImage bg;
+Platform platform;
 Player player;
+int pulsebgTarget = int(random(127));
+int pulsebgCurrent = pulsebgTarget;
+color bgColor = color(0,127,187);
 
 void setup() {
   fullScreen(P2D);
@@ -29,10 +32,14 @@ void setup() {
   //noCursor();
   noSmooth();
   pixelDensity(1);
-  rectMode(CENTER);
-  ellipseMode(CENTER);
   
-  player = new Player("car.png", 6, 548/2, 120, 2, 1);
+  bg = loadImage("bg1.png");
+  
+  player = new Player("car", 6, 548/2, 120, 2, 1);
+  player.p = new PVector(sW/2, sH/2);
+  
+  platform = new Platform("platform", 1, 201 ,68, 1, 1);
+  platform.p = new PVector(sW/2, sH/2);
 }
 
 void draw() {
@@ -43,9 +50,36 @@ void draw() {
   
   pg.beginDraw();
   
+  pulsebg(bgColor);
+  pg.imageMode(CORNER);
+  pg.image(bg, 0, 0, pg.width, pg.height);
+
+  platform.run();
+
   player.run();
-  
+    
   pg.endDraw();
   
   image(pg, 0, 0, width, height);
+}
+
+void flashScreen() {
+  pg.noStroke();
+  pg.fill(255,0,0,100);
+  pg.rectMode(CORNER);
+  pg.rect(0,0,width,height);
+}
+
+void pulsebg(color _c) {
+    pg.rectMode(CORNER);
+    pg.noStroke();
+    pg.fill(_c,pulsebgCurrent);
+    if (pulsebgCurrent>pulsebgTarget) {
+      pulsebgCurrent--;
+    } else if (pulsebgCurrent<pulsebgTarget) {
+      pulsebgCurrent++;
+    } else if (pulsebgCurrent==pulsebgTarget) {
+      pulsebgTarget=int(random(127));
+    }
+    pg.rect(0,0,width,height);
 }
