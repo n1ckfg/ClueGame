@@ -38,7 +38,7 @@ Player(String _name, int _fps, int _tdx, int _tdy, int _etx, int _ety){
     floorDivider1 = 0.34 * sW;
     floorDivider2 = 0.73 * sW;
     
-    maxJumpHeight = 0.5 * sH;
+    maxJumpHeight = 0.6 * sH;
     jumpIncrement = 0.07 * sH;
 
     home = zone[0].p;
@@ -86,7 +86,6 @@ Player(String _name, int _fps, int _tdx, int _tdy, int _etx, int _ety){
 
      p.y = tween(p.y, floor, ease);
    } else {
-     flashScreen();
      p.lerp(home, homeSpeed);
    }
 
@@ -107,7 +106,11 @@ Player(String _name, int _fps, int _tdx, int _tdy, int _etx, int _ety){
   jumpReady = false;
   isJumping = true;
   lastJump = millis();
- }
+  if (armReset) {
+    armReset = false;
+    playSound(bgMusic, true);
+  }
+}
  
  void stopJump() {
    jumpReady = true;

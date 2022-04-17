@@ -5,35 +5,19 @@ String soundPath = "sounds";
 
 //SOUNDS~~~~~~~~~~~~~~~~~
 //foreground sounds
-AudioPlayer fgDying, reachedHeaven, dragon, angel, returnToHell, introHeaven, introHell, helper;
-AudioPlayer fallingStars1, fallingStars2, fallingStars3;
-AudioPlayer flamingSkulls1, flamingSkulls2, flamingSkulls3;
+AudioPlayer fgSplat;
 
 //background sounds
-AudioPlayer bgHell, bgHeaven;
+AudioPlayer bgMusic;
 
 //~~~~~~~~~~~~~~~~~~~~~~~
 
 void soundSetup(){
   minim = new Minim(this);
   //foreground
-  fgDying = minim.loadFile("sounds/splat.wav");
-  reachedHeaven = minim.loadFile("sounds/reached heaven.wav");
-  introHeaven = minim.loadFile("sounds/welcome to heaven.wav");
-  returnToHell = minim.loadFile("sounds/return to hell.wav");
-  introHell = minim.loadFile("sounds/hell intro.wav");
-  helper = minim.loadFile("sounds/helper.wav");
-  dragon = minim.loadFile("sounds/dragon.wav");
-  fallingStars1 = minim.loadFile("sounds/falling stars.wav");
-  fallingStars2 = minim.loadFile("sounds/falling stars.wav");
-  fallingStars3 = minim.loadFile("sounds/falling stars.wav");
-  flamingSkulls1 = minim.loadFile("sounds/flaming skull.wav");
-  flamingSkulls2 = minim.loadFile("sounds/flaming skull.wav");
-  flamingSkulls3 = minim.loadFile("sounds/flaming skull.wav");
-  angel = minim.loadFile("sounds/flying angel.wav");
+  fgSplat = minim.loadFile("sounds/splat.wav");
   //background
-  bgHell = minim.loadFile("sounds/hell-loop.wav");
-  bgHeaven = minim.loadFile("sounds/heaven loop.wav");
+  bgMusic = minim.loadFile("sounds/march.mp3");
 }
 
 void soundStop(){
@@ -41,23 +25,9 @@ void soundStop(){
      minim.stop();
     //--
     //foreground
-    closeSound(fgDying);
-    closeSound(dragon);
-    closeSound(fallingStars1);
-    closeSound(fallingStars2);
-    closeSound(fallingStars3);
-    closeSound(flamingSkulls1);
-    closeSound(flamingSkulls2);
-    closeSound(flamingSkulls3);
-    closeSound(angel);
-    closeSound(reachedHeaven);
-    closeSound(returnToHell);
-    closeSound(introHell);
-    closeSound(introHeaven);
-    closeSound(helper);
+    closeSound(fgSplat);
     //background
-    closeSound(bgHell);
-    closeSound(bgHeaven);
+    closeSound(bgMusic);
     //--
   }catch(Exception e){ }
 }

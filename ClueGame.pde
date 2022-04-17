@@ -4,11 +4,11 @@ PVector mousePos = new PVector(0,0);
 PVector pmousePos = new PVector(0,0);
 int sW = 1024;
 int sH = 576;
-PFont font;
-int fontSize = 48;
+
 Settings settings;
 PGraphics2D pg;
 boolean armEnding = false;
+boolean armReset = false;
 
 PImage bg;
 Platform platform;
@@ -36,15 +36,16 @@ void setup() {
   noSmooth();
   pixelDensity(1);
   
-  setupTTS();
-  
+  setupVictoryMessage();
+  soundSetup();
+    
   bg = loadImage("bg1.png");
 
   zone[0] = new Zone("startZone",1);
   zone[0].p = new PVector(-0.1 * sW, 0.62 * sH);
 
   zone[1] = new Zone("endZone",1);
-  zone[1].p = new PVector(1.1 * sW, 0.58 * sH);
+  zone[1].p = new PVector(1.05 * sW, 0.78 * sH);
 
   zone[2] = new Zone("spikes1Zone",1);
   zone[2].p = new PVector(0.25 * sW, 0.07 * sH);
@@ -64,6 +65,8 @@ void setup() {
   platform = new Platform("platform", 1, 201 ,68, 1, 1);
   platform.resize(1.0/globalScale);
   platform.p = new PVector(sW/2, sH/2);
+
+  playSound(bgMusic, true);
 }
 
 void draw() {
@@ -72,13 +75,14 @@ void draw() {
   pmousePos.x = pmouseX / globalScale;
   pmousePos.y = pmouseY / globalScale;
   
-  if (!armEnding) {
-    pg.beginDraw();
+  pg.beginDraw();
+  if (!armEnding && !armReset) {
     
     pg.background(0);
     //pulsebg(bgColor);
     pg.imageMode(CORNER);
     pg.image(bg, 0, 0, pg.width, pg.height);
+    pg.image(zone[1].frames[0], 0.82 * sW, 0.48 * sH);
     
     for (int i=0; i<zone.length; i++) {
       zone[i].run();
@@ -86,19 +90,28 @@ void draw() {
     
     if (zone[0].playerHit) player.alive = true;
     if (zone[1].playerHit && !armEnding) armEnding = true;
-    if (zone[2].playerHit || zone[3].playerHit) player.alive = false;
+    if (zone[2].playerHit || zone[3].playerHit) {
+      playSound(fgSplat);
+      player.alive = false;
+    }
     
     platform.run();
   
     player.run();
-      
-    pg.endDraw();
     
-    image(pg, 0, 0, width, height);
-  } else {
+    if (!player.alive) flashScreen();
+  } else if (armEnding && !armReset) {
     speak();
     armEnding = false;
+    armReset = true;
+    player.p = zone[0].p.copy();
+    stopSound(bgMusic);
+  } else if (!armEnding && armReset) {
+    drawMessage();
   }
+
+  pg.endDraw();    
+  image(pg, 0, 0, width, height);
 }
 
 void flashScreen() {
@@ -120,4 +133,8 @@ void pulsebg(color _c) {
       pulsebgTarget=int(random(127));
     }
     pg.rect(0,0,width,height);
+}
+
+void exit() {
+  soundStop();
 }
