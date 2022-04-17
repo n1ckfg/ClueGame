@@ -8,9 +8,13 @@ class Player extends AnimSprite {
   float floorGround3 = 345 / globalScale;
   float floorDivider1 = 350 / globalScale;
   float floorDivider2 = 750 / globalScale;
-  float floorPlatform = 200 / globalScale;
+  float floorPlatform = 220 / globalScale;
   float floor = floorGround1;
   boolean isOnPlatform = false;
+  float maxJumpHeight = 50;
+  float jumpIncrement = 10;
+  boolean isJumping = false;
+  boolean jumpReady = true;
   
 Player(String _name, int _fps){
    super(_name, _fps);
@@ -30,6 +34,8 @@ Player(String _name, int _fps, int _tdx, int _tdy, int _etx, int _ety){
  void update(){
    super.update();
    
+   jumpReady = (p.dist(new PVector(p.x, floor)) < 10);
+   
    if (isOnPlatform) {
      if (mousePos.x == pmousePos.x) {
        p.x = platform.p.x;
@@ -47,10 +53,13 @@ Player(String _name, int _fps, int _tdx, int _tdy, int _etx, int _ety){
      } else {
        floor = floorGround3;
      }
-     
    }
-   
-   p.y = tween(p.y, floor, ease);
+      
+   if (isJumping && p.y > floor - maxJumpHeight) {
+     p.y -= jumpIncrement;
+   } else {
+     p.y = tween(p.y, floor, ease);
+   }
 
    p.x = boundary(p.x,0,float(width));
    p.y = boundary(p.y,0,float(height));
@@ -63,6 +72,17 @@ Player(String _name, int _fps, int _tdx, int _tdy, int _etx, int _ety){
  void run(){
    update();
    draw();
+ }
+ 
+ void startJump() {
+  if (jumpReady) {
+    jumpReady = false;
+    isJumping = true;
+  }
+ }
+ 
+ void stopJump() {
+  isJumping = false;
  }
 
 }

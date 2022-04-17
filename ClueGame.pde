@@ -52,7 +52,7 @@ void draw() {
   
   pg.beginDraw();
   
-  pg.clear();
+  pg.background(0);
   //pulsebg(bgColor);
   pg.imageMode(CORNER);
   pg.image(bg, 0, 0, pg.width, pg.height);

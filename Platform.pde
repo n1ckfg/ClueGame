@@ -11,6 +11,7 @@ class Platform extends AnimSprite {
   PVector wall2 = new PVector(pg.width, pg.height/2);
   PVector target = wall1;
   float switchDist = 100;
+  float platformDist = 50;
   float moveSpeed = 0.01;
   
 Platform(String _name, int _fps){
@@ -35,6 +36,7 @@ Platform(String _name, int _fps, int _tdx, int _tdy, int _etx, int _ety){
  }
  
  void update(){
+   int t = millis();
    super.update();
    p.lerp(target, moveSpeed);
    if (p.dist(target) < switchDist) {
@@ -44,8 +46,10 @@ Platform(String _name, int _fps, int _tdx, int _tdy, int _etx, int _ety){
        target = wall1;
      }
    }
-   if(player.p.dist(p) < 100){
-    player.isOnPlatform = true;
+   if(!player.isOnPlatform && mousePressed && player.p.dist(p) < platformDist){
+     player.isOnPlatform = true;
+   } else if (player.isOnPlatform && player.p.dist(p) < platformDist) {
+     player.isOnPlatform = true;
    } else {
      player.isOnPlatform = false;
    }

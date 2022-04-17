@@ -1,7 +1,7 @@
-void keyPressed(){
-  //
+void mousePressed() {
+  player.startJump();
 }
 
-void console() {
-  //
+void mouseReleased() {
+  player.stopJump();
 }
