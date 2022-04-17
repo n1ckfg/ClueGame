@@ -21,6 +21,7 @@ color uiColor = color(60, 120, 255, 127);
 Zone[] zone = new Zone[4];
 boolean firstRun = true;
 float uiSize;
+boolean armSpeak = false;
 
 void setup() {
   fullScreen(P2D);
@@ -115,12 +116,18 @@ void draw() {
     
     if (!player.alive) flashScreen();
   } else if (armEnding && !armReset) {
-    speak();
+    drawMessage();
+    armSpeak = true;
     armEnding = false;
     armReset = true;
     player.p = zone[0].p.copy();
   } else if (!armEnding && armReset) {
     drawMessage();
+
+    if (armSpeak) {
+      speak();
+      armSpeak = false;
+    }
   }
   
   pg.endDraw();    

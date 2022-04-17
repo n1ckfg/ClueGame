@@ -22,5 +22,5 @@ void drawMessage() {
   pg.fill(127,255,255);
   pg.textFont(font, fontSize/2);
   pg.textAlign(CENTER);
-  pg.text(victoryMessage, sW/2, sH/2);
+  pg.text(victoryMessage, sW/2, sH/2 - 0.1 * sH);
 }
