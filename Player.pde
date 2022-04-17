@@ -85,7 +85,6 @@ Player(String _name, int _fps, int _tdx, int _tdy, int _etx, int _ety){
     }
 
      p.y = tween(p.y, floor, ease);
-     if (mouseX != pmouseX) p.lerp(new PVector(zone[1].p.x, p.y),0.001);
    } else {
      p.lerp(home, homeSpeed);
    }
