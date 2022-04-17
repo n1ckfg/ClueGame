@@ -1,0 +1,340 @@
+fileFormatVersion: 2
+guid: 5fd2d8c217237e54fadb196e10440e0d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8030835215644163416
+    second: car_0
+  - first:
+      213: 6656177661250876350
+    second: car_1
+  - first:
+      213: -6623931398525493558
+    second: car_2
+  - first:
+      213: 5390159895719797930
+    second: car_3
+  - first:
+      213: 7200212785383552425
+    second: car_4
+  - first:
+      213: 1379436920523193030
+    second: car_5
+  - first:
+      213: 6491933170416096035
+    second: car_6
+  - first:
+      213: -5875692194955402758
+    second: car_7
+  - first:
+      213: -7936240278805657679
+    second: car_8
+  - first:
+      213: -6417879206789918286
+    second: car_9
+  - first:
+      213: 9018742084873354323
+    second: car_10
+  - first:
+      213: 2169203697078308770
+    second: car_11
+  - first:
+      213: 5614673921922855183
+    second: car_12
+  - first:
+      213: 7893694464857013307
+    second: car_13
+  - first:
+      213: 7222680328610415192
+    second: car_14
+  - first:
+      213: 119403808868268919
+    second: car_15
+  - first:
+      213: 458571105520427028
+    second: car_16
+  - first:
+      213: -2926170490827443070
+    second: car_17
+  - first:
+      213: 9097810448099587995
+    second: car_18
+  - first:
+      213: -1362606442241241411
+    second: car_19
+  - first:
+      213: 5221749373352746742
+    second: car_20
+  - first:
+      213: 8714757893126565398
+    second: car_21
+  - first:
+      213: 3822748858172905612
+    second: car_22
+  - first:
+      213: 8051676907398082794
+    second: car_23
+  - first:
+      213: -7972823658015207392
+    second: car_24
+  - first:
+      213: 6041504922997549726
+    second: car_25
+  - first:
+      213: -2551547747612016081
+    second: car_26
+  - first:
+      213: 2281754174379804462
+    second: car_27
+  - first:
+      213: -1838363145448931573
+    second: car_28
+  - first:
+      213: -4611170671035521614
+    second: car_29
+  - first:
+      213: 7584630234537472227
+    second: car_30
+  - first:
+      213: 6140029675374659190
+    second: car_31
+  - first:
+      213: -3410637321831004315
+    second: car_32
+  - first:
+      213: -1043954723481804841
+    second: car_34
+  - first:
+      213: -1738587271068478518
+    second: car_35
+  - first:
+      213: 2718726186853000336
+    second: car_36
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: car_0
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 1532
+        width: 1433
+        height: 452
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a205d9abedbc8090800000000000000
+      internalID: -8030835215644163416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: car_1
+      rect:
+        serializedVersion: 2
+        x: 2065
+        y: 1577
+        width: 1151
+        height: 385
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eb3bfb4215e7f5c50800000000000000
+      internalID: 6656177661250876350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: car_2
+      rect:
+        serializedVersion: 2
+        x: 91
+        y: 526
+        width: 1478
+        height: 596
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aced456fc711314a0800000000000000
+      internalID: -6623931398525493558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: car_3
+      rect:
+        serializedVersion: 2
+        x: 1669
+        y: 932
+        width: 1124
+        height: 473
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa46feaedd1bdca40800000000000000
+      internalID: 5390159895719797930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: car_4
+      rect:
+        serializedVersion: 2
+        x: 1638
+        y: 306
+        width: 1335
+        height: 541
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a53304416b4ce360800000000000000
+      internalID: 7200212785383552425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      car_2: -6623931398525493558
+      car_4: 7200212785383552425
+      car_0: -8030835215644163416
+      car_1: 6656177661250876350
+      car_3: 5390159895719797930
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

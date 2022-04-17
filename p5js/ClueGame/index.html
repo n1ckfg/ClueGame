@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+		<title>CarJumper</title>
+    	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<link rel="stylesheet" href="./css/style.css">
+		<script src="./js/libraries/p5.min.js"></script>
+		<script src="./js/animsprite.js"></script>
+		<script src="./js/bacterium.js"></script>
+		<script src="./js/car.js"></script>
+	</head>
+
+	<body>
+		<script>
+			"use strict";
+
+			const sW = 1024;
+			const sH = 768;
+			const fps = 60;
+			const pixelSize = 1;
+			let pg, pg2;
+			const pgOffset = Math.abs(sW - sH) / 2;
+			let mousePos;
+			let mouseMode = false;
+			let mouseDist = 0;
+			const minMouseDist = 50;
+
+			let car_img, bg_img, bg2_img;
+			let car;
+
+			let gravityNum = 8;
+			let floorNum = 350;
+
+			let left = false;
+			let right = false;
+
+			function preload() {
+			    car_img = loadImage("./images/car.png");
+			    bg_img = loadImage("./images/bg1.png");
+			    bg2_img = loadImage("./images/bg_5.png");
+			    bg_img.resize(sW, sH);
+			    bg2_img.resize(sW, sH);
+			}
+
+			function setup() {
+			    createCanvas(windowHeight, windowHeight);
+			    pg = createGraphics(sW, sH);
+			    pg2 = createGraphics(sW, sW);
+			    
+			    pixelDensity(1);	
+			    //noCursor();
+			    frameRate(fps);
+			    pg.strokeWeight(pixelSize);  
+
+			    car = new Car(car_img, 12, 548/2, 120, 2, 1); // image, fps, tileHeightX, tileHeightY, numTilesX, numTilesY
+			    car.p = createVector(width/2,floorNum);   
+
+			    mousePos = createVector(0, 0); 	
+			}
+
+			function getMousePos() {
+				mousePos.x = map(mouseX, 0, windowHeight, 0, sW);
+				mousePos.y = map(mouseY, 0, windowHeight, 0, sH);
+			}
+
+			function draw() {
+				pg.push();
+			    pg.clear();
+			    pg.image(bg2_img, 0, 0);
+			    pg.image(bg_img, 0, 0);
+
+			    if (mouseMode) {
+				    	getMousePos();
+				    	mouseDist = dist(car.p.x, 0, mousePos.x, 0);
+				    if (mouseIsPressed && mouseDist > minMouseDist) {
+					    if (mousePos.x < car.p.x) {
+				    		left = true;
+				    		right = false;
+				    	} else if (mousePos.x > car.p.x) {
+				    		left = false;
+				    		right = true;
+				    	}
+			    	} else {
+			    		left = false;
+			    		right = false;				    		
+			    	}
+		    	}
+
+			    if (left && !right) {
+			        car.gotoFrame("runLeft");
+			    } else if (!left && right) {
+			        car.gotoFrame("runRight");
+			    } else if (!left && !right){
+			        car.gotoFrame("stop");
+			    }
+
+			    car.run();
+			    pg.pop();
+
+			    pg2.push();
+			    pg2.image(pg, 0, pgOffset);
+			    pg2.pop();
+
+			    image(pg2, 0, 0, width, height);
+			}
+
+			function windowResized() {
+				resizeCanvas(windowHeight, windowHeight);
+			}
+
+			function mousePressed() {
+				mouseMode = true;
+			    console.log("mouse pressed");
+			    if (car.jumpReady) {
+			        car.jumpReady = false;
+			        car.jump = true;
+			    }   
+			}
+
+			function mouseReleased() {
+			    console.log("mouse released");
+			    car.jumpReady = true;
+			    car.jump = false;
+			    car.left = false;
+			    car.right = false;
+			}
+
+			function keyPressed() {
+				mouseMode = false;
+			    if (keyCode === LEFT_ARROW || key.toLowerCase() === 'a') {
+			        if (car.jumpReady) {
+			        	car.jumpReady = false;
+			        	car.jump = true;
+			    	}
+			        left = true;
+			        right = false;
+			    } else if (keyCode === RIGHT_ARROW || key.toLowerCase() === 'd') {
+			    	if (car.jumpReady) {
+ 			        	car.jumpReady = false;
+			        	car.jump = true;
+			    	}
+			        right = true;
+			        left = false;
+			    }        
+
+			    if ((keyCode === UP_ARROW || key.toLowerCase() === 'w') && car.jumpReady) {
+			        car.jumpReady = false;
+			        car.jump = true;
+			    }    
+			}
+
+			function keyReleased() {
+			    if (keyCode === LEFT_ARROW || key.toLowerCase() === 'a') {
+			        left = false;
+			        car.jumpReady = true;
+			        car.jump = false;
+			    }
+			    if (keyCode === RIGHT_ARROW || key.toLowerCase() === 'd') {
+			        right = false;
+			        car.jumpReady = true;
+			        car.jump = false;
+			    }        
+
+			    if (keyCode === UP_ARROW || key.toLowerCase() === 'w') {
+			        car.jumpReady = true;
+			        car.jump = false;
+			    }    
+			}
+		</script>
+	</body>
+
+</html>

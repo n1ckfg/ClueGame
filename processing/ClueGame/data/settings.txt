@@ -1,0 +1,11 @@
+Stage Width
+1024
+
+Stage Height
+576
+
+Global Scale
+1
+
+Victory Message
+Congratulations!
