@@ -6,6 +6,8 @@ class Settings {
     try {
       data = loadStrings(_s);
       for (int i=0;i<data.length;i++) {
+        if (data[i].equals("Stage Width")) sW = setInt(data[i+1]); 
+        if (data[i].equals("Stage Height")) sH = setInt(data[i+1]); 
         if (data[i].equals("Global Scale")) globalScale = setInt(data[i+1]); 
       }
     } 

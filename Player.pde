@@ -2,19 +2,16 @@ class Player extends AnimSprite {
 
   float ease = 4;
   boolean alive = true;
-  float gravity = 2;
-  float floorGround1 = 380 / globalScale;
-  float floorGround2 = 480 / globalScale;
-  float floorGround3 = 345 / globalScale;
-  float floorDivider1 = 350 / globalScale;
-  float floorDivider2 = 750 / globalScale;
-  float floorPlatform = 220 / globalScale;
-  float floor = floorGround1;
+  float floorGround1, floorGround2, floorGround3, floorDivider1, floorDivider2, floorPlatform, floor;
   boolean isOnPlatform = false;
-  float maxJumpHeight = 50;
-  float jumpIncrement = 10;
+  float maxJumpHeight, jumpIncrement;
   boolean isJumping = false;
   boolean jumpReady = true;
+  PVector home;
+  int lastJump = 0;
+  int maxJumpTime = 300;
+  float homeSpeed = 0.01;
+  float onPlatformSpeed = 0.1;
   
 Player(String _name, int _fps){
    super(_name, _fps);
@@ -31,20 +28,38 @@ Player(String _name, int _fps, int _tdx, int _tdy, int _etx, int _ety){
    init();
  }
  
+  void init() {
+    super.init();
+     
+    floorGround1 = 0.66 * sH;
+    floorGround2 = 0.83 * sH;
+    floorGround3 = 0.60 * sH;
+    floorPlatform = 0.38 * sH;
+    floorDivider1 = 0.34 * sW;
+    floorDivider2 = 0.73 * sW;
+    
+    maxJumpHeight = 0.7 * sH;
+    jumpIncrement = 0.08 * sH;
+
+    home = zone[0].p;
+    floor = floorGround1;
+  }
+ 
+ void moveX() {
+   p.x += (mousePos.x - pmousePos.x) * 0.3;   
+ }
+ 
  void update(){
    super.update();
    
-   jumpReady = (p.dist(new PVector(p.x, floor)) < 10);
-   
+   if (alive) {
    if (isOnPlatform) {
-     if (mousePos.x == pmousePos.x) {
-       p.x = platform.p.x;
-     } else {
-       p.x = tween(p.x, mousePos.x, ease);     
-     }
+     p.x = lerp(p.x, platform.p.x, onPlatformSpeed);
+     moveX();  
+     
      floor = floorPlatform;
    } else {
-     p.x = tween(p.x, mousePos.x, ease);     
+     moveX();    
 
      if (p.x < floorDivider1) {
        floor = floorGround1;
@@ -54,11 +69,24 @@ Player(String _name, int _fps, int _tdx, int _tdy, int _etx, int _ety){
        floor = floorGround3;
      }
    }
-      
-   if (isJumping && p.y > floor - maxJumpHeight) {
-     p.y -= jumpIncrement;
-   } else {
+  
+     if (isJumping && p.y > floor - maxJumpHeight) {
+        jumpReady=false;
+        if (p.y > floor - maxJumpHeight) {
+            p.y -= jumpIncrement;
+        }
+        if (p.y <= floor - maxJumpHeight || millis() > lastJump + maxJumpTime) {
+            isJumping = false;
+        }
+    } else {
+        if (p.y == floor - maxJumpHeight) {
+            jumpReady = true;
+        }
+    }
+
      p.y = tween(p.y, floor, ease);
+   } else {
+     p.lerp(home, homeSpeed);
    }
 
    p.x = boundary(p.x,0,float(width));
@@ -75,14 +103,14 @@ Player(String _name, int _fps, int _tdx, int _tdy, int _etx, int _ety){
  }
  
  void startJump() {
-  if (jumpReady) {
-    jumpReady = false;
-    isJumping = true;
-  }
+  jumpReady = false;
+  isJumping = true;
+  lastJump = millis();
  }
  
  void stopJump() {
-  isJumping = false;
+   jumpReady = true;
+   isJumping = false;
  }
 
 }
