@@ -18,6 +18,7 @@ int pulsebgCurrent = pulsebgTarget;
 color bgColor = color(0,127,187);
 
 Zone[] zone = new Zone[4];
+boolean firstRun = true;
 
 void setup() {
   fullScreen(P2D);
@@ -32,7 +33,7 @@ void setup() {
   ((PGraphicsOpenGL)pg).textureSampling(texSamplingMode);
   pg.noSmooth();
   
-  //noCursor();
+  noCursor();
   noSmooth();
   pixelDensity(1);
   
@@ -65,8 +66,6 @@ void setup() {
   platform = new Platform("platform", 1, 201 ,68, 1, 1);
   platform.resize(1.0/globalScale);
   platform.p = new PVector(sW/2, sH/2);
-
-  playSound(bgMusic, true);
 }
 
 void draw() {
@@ -135,6 +134,8 @@ void pulsebg(color _c) {
     pg.rect(0,0,width,height);
 }
 
+/*
 void exit() {
   soundStop();
 }
+*/
