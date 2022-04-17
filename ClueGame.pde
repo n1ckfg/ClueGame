@@ -36,6 +36,8 @@ void setup() {
   noSmooth();
   pixelDensity(1);
   
+  setupTTS();
+  
   bg = loadImage("bg1.png");
 
   zone[0] = new Zone("startZone",1);
@@ -45,20 +47,20 @@ void setup() {
   zone[1].p = new PVector(1.1 * sW, 0.58 * sH);
 
   zone[2] = new Zone("spikes1Zone",1);
-  zone[2].p = new PVector(0.25 * sW, 0.25 * sH);
+  zone[2].p = new PVector(0.25 * sW, 0.07 * sH);
 
   zone[3] = new Zone("spikes2Zone",1);
-  zone[3].p = new PVector(0.52 * sW, 0.85 * sH);
+  zone[3].p = new PVector(0.52 * sW, 0.87 * sH);
   
   for (int i=0; i<zone.length; i++) {
     zone[i].resize(1.0/globalScale);
-    zone[i].showInGame = true;
+    zone[i].showInGame = false;
   }
   
     
   player = new Player("car", 6, 548/2, 120, 2, 1);
   player.resize(1.0/globalScale);
-  player.p = new PVector(sW/2, sH/2);
+  player.p = zone[0].p.copy();
   
   platform = new Platform("platform", 1, 201 ,68, 1, 1);
   platform.resize(1.0/globalScale);
@@ -95,7 +97,8 @@ void draw() {
     
     image(pg, 0, 0, width, height);
   } else {
-    //
+    speak();
+    armEnding = false;
   }
 }
 

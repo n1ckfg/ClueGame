@@ -9,6 +9,7 @@ class Settings {
         if (data[i].equals("Stage Width")) sW = setInt(data[i+1]); 
         if (data[i].equals("Stage Height")) sH = setInt(data[i+1]); 
         if (data[i].equals("Global Scale")) globalScale = setInt(data[i+1]); 
+        if (data[i].equals("Victory Message")) victoryMessage = setString(data[i+1]); 
       }
     } 
     catch(Exception e) {

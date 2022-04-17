@@ -9,9 +9,9 @@ class Player extends AnimSprite {
   boolean jumpReady = true;
   PVector home;
   int lastJump = 0;
-  int maxJumpTime = 300;
-  float homeSpeed = 0.01;
-  float onPlatformSpeed = 0.1;
+  int maxJumpTime = 100;
+  float homeSpeed = 0.02;
+  float onPlatformSpeed = 0.2;
   
 Player(String _name, int _fps){
    super(_name, _fps);
@@ -86,6 +86,7 @@ Player(String _name, int _fps, int _tdx, int _tdy, int _etx, int _ety){
 
      p.y = tween(p.y, floor, ease);
    } else {
+     flashScreen();
      p.lerp(home, homeSpeed);
    }
 
