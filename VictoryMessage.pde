@@ -13,6 +13,7 @@ void setupVictoryMessage() {
 }
 
 void speak() {
+  stopSound(bgMusic);
   tts.speak(victoryMessage);
 }
 

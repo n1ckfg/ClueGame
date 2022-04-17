@@ -10,3 +10,10 @@ void mousePressed() {
 void mouseReleased() {
   player.stopJump();
 }
+
+void keyPressed() {
+  if (key == 'r') {
+    stopSound(bgMusic);
+    firstRun = true;
+  }
+}

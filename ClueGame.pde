@@ -104,7 +104,6 @@ void draw() {
     armEnding = false;
     armReset = true;
     player.p = zone[0].p.copy();
-    stopSound(bgMusic);
   } else if (!armEnding && armReset) {
     drawMessage();
   }
