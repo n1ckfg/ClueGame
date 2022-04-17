@@ -106,9 +106,15 @@ Player(String _name, int _fps, int _tdx, int _tdy, int _etx, int _ety){
   jumpReady = false;
   isJumping = true;
   lastJump = millis();
+  
+  if (firstRun) {
+    playSound(bgMusic, true);
+    firstRun = false;
+  }
+  
   if (armReset) {
     armReset = false;
-    playSound(bgMusic, true);
+    firstRun = true;
   }
 }
  

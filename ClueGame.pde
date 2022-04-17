@@ -16,9 +16,11 @@ Player player;
 int pulsebgTarget = int(random(127));
 int pulsebgCurrent = pulsebgTarget;
 color bgColor = color(0,127,187);
+color uiColor = color(60, 120, 255, 127);
 
 Zone[] zone = new Zone[4];
 boolean firstRun = true;
+float uiSize;
 
 void setup() {
   fullScreen(P2D);
@@ -28,6 +30,8 @@ void setup() {
   settings = new Settings("settings.txt");
   sW /= globalScale;
   sH /= globalScale;
+  
+  uiSize = 0.02 * sW;
   
   pg = (PGraphics2D) createGraphics(sW, sH, P2D);
   ((PGraphicsOpenGL)pg).textureSampling(texSamplingMode);
@@ -96,6 +100,17 @@ void draw() {
     
     platform.run();
   
+    pg.fill(uiColor);
+    if (player.isJumping) {
+      pg.ellipse(mousePos.x, mousePos.y, uiSize*2, uiSize*2);
+    } else {
+      pg.ellipse(mousePos.x, mousePos.y, uiSize, uiSize);
+    }
+    if (mouseX != pmouseX) {
+      pg.stroke(255, random(40, 50));
+      pg.line(mousePos.x, mousePos.y, player.p.x, player.p.y);
+    }
+  
     player.run();
     
     if (!player.alive) flashScreen();
@@ -107,8 +122,9 @@ void draw() {
   } else if (!armEnding && armReset) {
     drawMessage();
   }
-
+  
   pg.endDraw();    
+  
   image(pg, 0, 0, width, height);
 }
 
