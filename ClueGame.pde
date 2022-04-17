@@ -57,7 +57,6 @@ void setup() {
     zone[i].showInGame = false;
   }
   
-    
   player = new Player("car", 6, 548/2, 120, 2, 1);
   player.resize(1.0/globalScale);
   player.p = zone[0].p.copy();

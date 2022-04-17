@@ -7,11 +7,9 @@ class Platform extends AnimSprite {
   PVector v = vOrig;
   PVector aOrig = new PVector(0.1,1);
   PVector a = aOrig;
-  PVector wall1 = new PVector(0, pg.height/2);
-  PVector wall2 = new PVector(pg.width, pg.height/2);
+  PVector wall1, wall2;
   PVector target = wall1;
-  float switchDist = 100;
-  float platformDist = 50;
+  float switchDist, platformDist;
   float moveSpeed = 0.01;
   
 Platform(String _name, int _fps){
@@ -27,6 +25,14 @@ Platform(String _name, int _fps, int _tdx, int _tdy, int _etx, int _ety){
  Platform(PImage[] _name, int _fps){
    super(_name, _fps);
    init();
+ }
+ 
+ void init() {
+   super.init();
+   
+   setTarget(new PVector(0 * sW, 0.5 * sH), new PVector(1.0 * sW, 0.5 * sH));
+   switchDist = 0.1 * sW;
+   platformDist = 0.5 * sW;
  }
  
  void setTarget(PVector w1, PVector w2) {
@@ -46,9 +52,9 @@ Platform(String _name, int _fps, int _tdx, int _tdy, int _etx, int _ety){
        target = wall1;
      }
    }
-   if(!player.isOnPlatform && mousePressed && player.p.dist(p) < platformDist){
+   if(!player.isOnPlatform && !player.isJumping && mousePressed && player.p.dist(p) < platformDist){
      player.isOnPlatform = true;
-   } else if (player.isOnPlatform && player.p.dist(p) < platformDist) {
+   } else if (player.isOnPlatform && !player.isJumping && player.p.dist(p) < platformDist) {
      player.isOnPlatform = true;
    } else {
      player.isOnPlatform = false;
@@ -65,9 +71,9 @@ Platform(String _name, int _fps, int _tdx, int _tdy, int _etx, int _ety){
  }
 
 void reset(){
-     p = new PVector(home.x,home.y);
-     attack = false;
-     v = new PVector(vOrig.x,vOrig.y);  
+  p = new PVector(home.x,home.y);
+  attack = false;
+  v = new PVector(vOrig.x,vOrig.y);  
 }
 
 }

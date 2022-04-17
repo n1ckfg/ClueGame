@@ -38,8 +38,8 @@ Player(String _name, int _fps, int _tdx, int _tdy, int _etx, int _ety){
     floorDivider1 = 0.34 * sW;
     floorDivider2 = 0.73 * sW;
     
-    maxJumpHeight = 0.7 * sH;
-    jumpIncrement = 0.08 * sH;
+    maxJumpHeight = 0.5 * sH;
+    jumpIncrement = 0.07 * sH;
 
     home = zone[0].p;
     floor = floorGround1;
