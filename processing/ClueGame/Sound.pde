@@ -5,10 +5,10 @@ String soundPath = "sounds";
 
 //SOUNDS~~~~~~~~~~~~~~~~~
 //foreground sounds
-AudioPlayer fgSplat;
+ddf.minim.AudioPlayer fgSplat;
 
 //background sounds
-AudioPlayer bgMusic;
+ddf.minim.AudioPlayer bgMusic;
 
 //~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -34,25 +34,25 @@ void soundStop(){
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-void stopSound(AudioSnippet _a){
+void stopSound(ddf.minim.AudioSnippet _a){
   _a.pause();
 }
 
-void stopSound(AudioPlayer _a){
+void stopSound(ddf.minim.AudioPlayer _a){
   _a.pause();
 }
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-void playSound(AudioSnippet _a){
+void playSound(ddf.minim.AudioSnippet _a){
   _a.rewind();
   _a.play();
 }
 
-void playSound(AudioPlayer _a){
+void playSound(ddf.minim.AudioPlayer _a){
   _a.play(0);
 }
 
-void playSound(AudioPlayer _a, boolean _l){
+void playSound(ddf.minim.AudioPlayer _a, boolean _l){
   if(_l){
     _a.loop();
   }else{
@@ -62,13 +62,13 @@ void playSound(AudioPlayer _a, boolean _l){
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-void closeSound(AudioSnippet _a){
+void closeSound(ddf.minim.AudioSnippet _a){
   try{
     _a.close();
   }catch(Exception e){ }
 }
 
-void closeSound(AudioPlayer _a){
+void closeSound(ddf.minim.AudioPlayer _a){
   try{
     _a.close();
   }catch(Exception e){ }

@@ -1,6 +1,6 @@
-import guru.ttslib.*;
+//import guru.ttslib.*;
 
-TTS tts;
+//TTS tts;
 PFont font;
 int fontSize = 96;
 
@@ -8,13 +8,13 @@ String victoryMessage = "Congratulations!";
 
 void setupVictoryMessage() {
   fontSize = int(float(fontSize) * (1.0 / globalScale));
-  tts = new TTS();
+  //tts = new TTS();
   font = loadFont("fonts/FrankRuhlHofshi-Regular-96.vlw");
 }
 
 void speak() {
   stopSound(bgMusic);
-  tts.speak(victoryMessage);
+  //tts.speak(victoryMessage);
 }
 
 void drawMessage() {
